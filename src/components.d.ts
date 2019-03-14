@@ -8,62 +8,58 @@
 import '@stencil/core';
 
 
+import {
+  Cell,
+  Config,
+} from './components/cbk-grid/entities';
 
 
 export namespace Components {
 
-  interface MyComponent {
+  interface CbkGrid {
     /**
     * The first name
     */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
+    'config': Config;
     /**
     * The middle name
     */
-    'middle': string;
+    'items': Cell[];
   }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
+  interface CbkGridAttributes extends StencilHTMLAttributes {
     /**
     * The first name
     */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
+    'config'?: Config;
     /**
     * The middle name
     */
-    'middle'?: string;
+    'items'?: Cell[];
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
+    'CbkGrid': Components.CbkGrid;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
+    'cbk-grid': Components.CbkGridAttributes;
   }
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLCbkGridElement extends Components.CbkGrid, HTMLStencilElement {}
+  var HTMLCbkGridElement: {
+    prototype: HTMLCbkGridElement;
+    new (): HTMLCbkGridElement;
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
+    'cbk-grid': HTMLCbkGridElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'cbk-grid': HTMLCbkGridElement;
   }
 
 

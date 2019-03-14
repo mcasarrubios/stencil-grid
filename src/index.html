@@ -4,12 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
-  <script src="/build/mycomponent.js"></script>
+  <script src="/build/cbkgrid.js"></script>
 
 </head>
 <body>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <cbk-grid></cbk-grid>
+  <script>
+    const cmp = document.querySelector('cbk-grid');
+    cmp.config = {
+      multiSelect: false,
+      columns: [{
+        key: 'col1',
+        type: 'text'
+      }, {
+        key: 'col2',
+        type: 'text'
+      }, {
+        key: 'col3',
+        type: 'image'
+      }]
+    };
+    cmp.items = [
+      {col1: 'John', col2: 'Doe', col3: 'http://www.fillmurray.com/200/300'},
+      {col1: 'Bill', col2: 'Murray', col3: 'http://www.fillmurray.com/200/300'},
+      {col1: 'Bill 2', col2: 'Murray 2', col3: 'http://www.fillmurray.com/200/300'}
+    ]
+  </script>
 
 </body>
 </html>
