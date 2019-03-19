@@ -8,28 +8,57 @@
 
 </head>
 <body>
-
+  <cbk-grid-actions></cbk-grid-actions>
   <cbk-grid></cbk-grid>
   <script>
-    const cmp = document.querySelector('cbk-grid');
-    cmp.config = {
-      multiSelect: false,
+    const grid = document.querySelector('cbk-grid');
+    grid.config = {
+      multiSelect: true,
       columns: [{
-        key: 'col1',
+        key: 'name',
         type: 'text'
       }, {
-        key: 'col2',
+        key: 'lastName',
         type: 'text'
       }, {
-        key: 'col3',
+        key: 'photo',
         type: 'image'
-      }]
+      }],
+      header: [
+        { text: 'Name' },
+        { text: 'Last name' },
+        { text: 'Photo' }
+      ]
     };
-    cmp.items = [
-      {col1: 'John', col2: 'Doe', col3: 'http://www.fillmurray.com/200/300'},
-      {col1: 'Bill', col2: 'Murray', col3: 'http://www.fillmurray.com/200/300'},
-      {col1: 'Bill 2', col2: 'Murray 2', col3: 'http://www.fillmurray.com/200/300'}
+    grid.items = [
+      { id: 1, name: 'John', lastName: 'Doe', photo: 'http://www.fillmurray.com/300/200' },
+      { id: 2, name: 'Bill', lastName: 'Murray', photo: 'http://www.fillmurray.com/300/200' },
+      { id: 3, name: 'Bill 2', lastName: 'Murray 2', photo: 'http://www.fillmurray.com/300/200' }
     ]
+
+    const gridActions = document.querySelector('cbk-grid-actions');
+    gridActions.config = {
+      gridActions: [{
+        key: 'selectAll',
+        text: 'Select All'
+      }, {
+        key: 'clearSelection',
+        text: 'Clear Selection'
+      }]
+    }
+
+    gridActions.addEventListener('actionClicked', event => {
+      const action = event.detail;
+      if (action.key === 'selectAll') {
+        console.log('Select All');
+        grid.selectAllItems();
+      }
+
+      if (action.key === 'clearSelection') {
+        grid.clearSelection();
+      }
+
+    });
   </script>
 
 </body>

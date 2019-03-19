@@ -9,44 +9,80 @@ import '@stencil/core';
 
 
 import {
-  Cell,
   Config,
+} from './components/cbk-grid-actions/entities';
+import {
+  Config as Config2,
 } from './components/cbk-grid/entities';
 
 
 export namespace Components {
 
-  interface CbkGrid {
+  interface CbkGridActions {
     /**
-    * The first name
+    * 4. Public Property API Config data
     */
     'config': Config;
-    /**
-    * The middle name
-    */
-    'items': Cell[];
   }
-  interface CbkGridAttributes extends StencilHTMLAttributes {
+  interface CbkGridActionsAttributes extends StencilHTMLAttributes {
     /**
-    * The first name
+    * 4. Public Property API Config data
     */
     'config'?: Config;
     /**
-    * The middle name
+    * 5. Events section
     */
-    'items'?: Cell[];
+    'onActionClicked'?: (event: CustomEvent) => void;
+  }
+
+  interface CbkGrid {
+    'clearSelection': () => void;
+    /**
+    * 4. Public Property API Config data
+    */
+    'config': Config;
+    /**
+    * Grid items
+    */
+    'items': any[];
+    /**
+    * 8. Public methods API
+    */
+    'selectAllItems': () => void;
+  }
+  interface CbkGridAttributes extends StencilHTMLAttributes {
+    /**
+    * 4. Public Property API Config data
+    */
+    'config'?: Config;
+    /**
+    * Grid items
+    */
+    'items'?: any[];
+    /**
+    * 5. Events section
+    */
+    'onSelectionChanged'?: (event: CustomEvent) => void;
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
+    'CbkGridActions': Components.CbkGridActions;
     'CbkGrid': Components.CbkGrid;
   }
 
   interface StencilIntrinsicElements {
+    'cbk-grid-actions': Components.CbkGridActionsAttributes;
     'cbk-grid': Components.CbkGridAttributes;
   }
 
+
+  interface HTMLCbkGridActionsElement extends Components.CbkGridActions, HTMLStencilElement {}
+  var HTMLCbkGridActionsElement: {
+    prototype: HTMLCbkGridActionsElement;
+    new (): HTMLCbkGridActionsElement;
+  };
 
   interface HTMLCbkGridElement extends Components.CbkGrid, HTMLStencilElement {}
   var HTMLCbkGridElement: {
@@ -55,10 +91,12 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'cbk-grid-actions': HTMLCbkGridActionsElement
     'cbk-grid': HTMLCbkGridElement
   }
 
   interface ElementTagNameMap {
+    'cbk-grid-actions': HTMLCbkGridActionsElement;
     'cbk-grid': HTMLCbkGridElement;
   }
 
